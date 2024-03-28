@@ -7,7 +7,7 @@ import sys, os
 # Autor: Jan Prusinowski
 # Rev: 1
 
-def run_c_program(args):
+def run_program(args):
     try:
         result = subprocess.run(args, capture_output=True, text=True, check=True)
         return result.stdout.strip()
@@ -26,6 +26,10 @@ def run_tests():
         ("Check IP 192.168.1.1", [path, "check", "192.168.1.1"]),
         ("Delete subnet 10.20.0.0/16", [path, "del", "10.20.0.0", "16"]),
         ("Check IP 10.20.128.10 after deletion", [path, "check", "10.20.128.10"]),
+        ("Add subnet with invalid mask", [path, "add", "10.20.0.0", "-1"]),
+        ("Add subnet with invalid mask", [path, "add", "10.20.0.0", "33"]),
+        ("Add subnet with out-of-range base IP", [path, "add", "256.0.0.0", "16"]),
+        ("Delete non-existing subnet", [path, "del", "192.168.0.0", "24"])
     ]
 
     report = []
@@ -34,7 +38,7 @@ def run_tests():
         report.append(f"Test: {test_name}")
         report.append(f"Command: {' '.join(args)}")
         report.append("Result:")
-        report.append(run_c_program(args))
+        report.append(run_program(args))
         report.append("-" * 50)
 
     return "\n".join(report)
