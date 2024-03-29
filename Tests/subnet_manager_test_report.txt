@@ -1,0 +1,17 @@
+Testing adding valid subnets:
+Adding valid subnet - Adding 10.20.0.0/16: Passed
+Adding valid subnet - Adding 32.64.128.0/20: Passed
+
+Testing adding invalid subnets:
+Adding invalid subnet - Adding 10.20.0.0/33: Passed
+Adding invalid subnet - Adding 10.20.0.0/: Passed
+
+Testing deleting existing subnets:
+Deleting existing subnet - Deleting 10.20.0.0/16: Passed
+
+Testing deleting non-existing subnets:
+Deleting non-existing subnet - Deleting 10.20.0.0/16: Passed
+
+Testing checking IP addresses:
+Checking IP address - Adding 10.20.0.0/16: Passed
+
